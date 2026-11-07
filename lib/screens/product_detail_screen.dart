@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../models/product.dart';
-import '../routes/app_routes.dart';
 import '../services/cart_service.dart';
 import '../theme/app_theme.dart';
 import '../widgets/cart_badge_button.dart';
@@ -29,10 +28,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         SnackBar(
           content: Text('${product.name} added to cart'),
           duration: const Duration(seconds: 2),
-          action: SnackBarAction(
-            label: 'VIEW CART',
-            onPressed: () => Navigator.pushNamed(context, AppRoutes.cart),
-          ),
         ),
       );
   }
