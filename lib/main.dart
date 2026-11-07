@@ -20,10 +20,23 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       initialRoute: AppRoutes.home,
+
+      // Named Routes: isimle açılan sayfalar
       routes: {
         AppRoutes.home: (context) => const HomeScreen(),
-        AppRoutes.detail: (context) => const ProductDetailScreen(),
         AppRoutes.cart: (context) => const CartScreen(),
+      },
+
+      // Detay sayfası: MaterialPageRoute ile oluşturulur,
+      // route arguments (ürün) settings içinde taşınır
+      onGenerateRoute: (settings) {
+        if (settings.name == AppRoutes.detail) {
+          return MaterialPageRoute(
+            builder: (context) => const ProductDetailScreen(),
+            settings: settings,
+          );
+        }
+        return null;
       },
     );
   }

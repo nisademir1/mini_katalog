@@ -21,48 +21,64 @@ class ProductCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Card: ürün görselinin gri, köşeleri yuvarlak kutusu
           Expanded(
-            child: Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: AppTheme.surface,
+            child: Card(
+              margin: EdgeInsets.zero,
+              elevation: 0,
+              color: AppTheme.surface,
+              shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: Hero(
-                tag: 'product-${product.id}',
-                child: ProductImage(product: product),
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                // Align: görseli kartın ortasına hizalar
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Hero(
+                    tag: 'product-${product.id}',
+                    child: ProductImage(product: product),
+                  ),
+                ),
               ),
             ),
           ),
-          const SizedBox(height: 8),
-          Text(
-            product.name,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: AppTheme.primaryText,
-            ),
-          ),
-          const SizedBox(height: 2),
-          Text(
-            product.tagline,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              fontSize: 12,
-              color: AppTheme.secondaryText,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            product.price,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
-              color: AppTheme.accent,
+          // margin: yazıları karttan biraz aşağı iter
+          Container(
+            margin: const EdgeInsets.only(top: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  product.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: AppTheme.primaryText,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  product.tagline,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: AppTheme.secondaryText,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  product.price,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: AppTheme.accent,
+                  ),
+                ),
+              ],
             ),
           ),
         ],

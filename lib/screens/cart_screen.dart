@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../routes/app_routes.dart';
 import '../services/cart_service.dart';
 import '../theme/app_theme.dart';
 import '../utils/formatters.dart';
 import '../widgets/cart_item_tile.dart';
+import 'product_detail_screen.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -24,6 +24,7 @@ class CartScreen extends StatelessWidget {
         ),
         actions: [
           TextButton(
+            // Navigator.pop: açık pencereyi kapatır
             onPressed: () => Navigator.pop(dialogContext),
             child: const Text('OK'),
           ),
@@ -52,10 +53,13 @@ class CartScreen extends StatelessWidget {
                     return CartItemTile(
                       item: item,
                       onRemove: () => cart.removeOne(item.product),
-                      onTap: () => Navigator.pushNamed(
+                      // Navigator.push + MaterialPageRoute ile detay sayfası
+                      onTap: () => Navigator.push(
                         context,
-                        AppRoutes.detail,
-                        arguments: item.product,
+                        MaterialPageRoute(
+                          builder: (context) => const ProductDetailScreen(),
+                          settings: RouteSettings(arguments: item.product),
+                        ),
                       ),
                     );
                   },
